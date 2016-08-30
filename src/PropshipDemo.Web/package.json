@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "author": "Mohd Ali",
   "description": "This a demo(POC) project for a management software which I am planning to develop as my hobby project.",
+  "scripts": {
+    "postinstall": "typings install",
+    "typings": "typings"
+  },
   "devDependencies": {
     "concurrently": "2.2.0",
-    "lite-server": "2.2.2",
     "typescript": "2.0.0",
-    "typings": "1.3.2" 
+    "typings": "1.3.2"
   }
 }

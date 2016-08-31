@@ -15,9 +15,25 @@ var paths = {
     npm: './node_modules/',
     lib: webroot + "/lib/",
     tsSource: './TypeScript/**/*.ts',
-    tsOutput: webroot + '/js/',
+    tsOutput: webroot + '/appScripts/',
     tsDef: "./TypeScript/definitions/"
 }
+
+gulp.task("scriptsNStyles", () => {
+    gulp.src([
+            'core-js/client/**',
+            'systemjs/dist/system.src.js',
+            'reflect-metadata/**',
+            'rxjs/**',
+            'zone.js/dist/**',
+            'angular2/**',
+            'jquery/dist/jquery.*js',
+            'bootstrap/dist/js/bootstrap.*js',
+    ], {
+        cwd: "node_modules/**"
+    })
+        .pipe(gulp.dest(paths.lib));
+});
 
 var tsProject = ts.createProject({
     declarationFiles: true,
@@ -45,3 +61,5 @@ gulp.task('ts-compile', function () {
 gulp.task('watch', ['ts-compile'], function () {
     gulp.watch(paths.tsDef, ['ts-compile']);
 });
+
+gulp.task('default', ['scriptsNStyles', 'watch']);
